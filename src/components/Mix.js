@@ -1,20 +1,29 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import PlayButton from "./PlayButton";
 import PlayMix from "./PlayMix";
 
-const Mix = ({ name, pictures, ...props }) => (
-  <div
-    className="aspect-ratio aspect-ratio--3x4 pointer bg-black cover bg-center"
-    style={{ backgroundImage: `url(${pictures.extra_large})` }}
-  >
-    <PlayMix {...props}>
+const Mix = ({ name, pictures, slug, id, ...props }) => {
+  console.log(slug);
+  return (
+    <div
+      className="aspect-ratio aspect-ratio--3x4 pointer bg-black cover bg-center"
+      style={{ backgroundImage: `url(${pictures.extra_large})` }}
+    >
       <div className="ph3 pv4 aspect-ratio--object mix-overlay">
-        <div className="flex items-center relative z-2">
+        <div className="flex flex-columns relative z-2">
           <h1 className="f4 f3-l mv0 white ttu biryani pr2 lh-title">{name}</h1>
-          <PlayButton />
         </div>
+
+        <Link to={`/show/${slug}`} className="absolute absolute--fill z-3" />
+        <PlayMix
+          id={id}
+          className="absolute bottom-1 left1 z-5 flex items left pointer"
+        >
+          <PlayButton />
+        </PlayMix>
       </div>
-    </PlayMix>
-  </div>
-);
+    </div>
+  );
+};
 export default Mix;
